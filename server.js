@@ -16,7 +16,7 @@ app.use(morgan('dev'));
 
 // Routes
 // app.use(require('./routes/api-routes'));
-// app.use(require('./routes/html-routes'));
+app.use(require('./routes/html-routes'));
 
 // Mongoose connection
 mongoose.connect("mongodb://localhost/workout", {
