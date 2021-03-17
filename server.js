@@ -15,16 +15,21 @@ app.use(express.static('public'));
 app.use(morgan('dev'));
 
 // Routes
-// app.use(require('./routes/api-routes'));
+app.use(require('./routes/api-routes'));
 app.use(require('./routes/html-routes'));
 
 // Mongoose connection
-mongoose.connect("mongodb://localhost/workout", {
-  useNewUrlParser: true,
-  useFindAndModify: false
-});
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/workout',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 // Server listening
 app.listen(PORT, () => {
-    console.log("Server listening on http://localhost:" + PORT)
+  console.log("Server listening on http://localhost:" + PORT)
 });
